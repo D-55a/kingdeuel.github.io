@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skymit Motors Ltd — Exclusivity on Every Ride</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Montserrat:wght@200;300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b1628;
+    --navy-mid: #152240;
+    --navy-light: #1e3158;
+    --silver: #c8cdd6;
+    --silver-light: #e8ebf0;
+    --white: #ffffff;
+    --off-white: #f7f8fa;
+    --chrome: #a8b0bf;
+    --accent: #b8960c;
+    --accent-light: #d4ac0d;
+    --text-dark: #0b1628;
+    --text-mid: #4a5568;
+    --text-light: #8896a8;
+    --border: rgba(11,22,40,0.08);
+    --border-navy: rgba(11,22,40,0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--text-dark);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CURSOR */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--navy);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: transform 0.1s;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px; height: 32px;
+    border: 1px solid var(--navy);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%,-50%);
+    opacity: 0.3;
+    transition: width 0.3s, height 0.3s, opacity 0.3s;
+  }
+  body:hover .cursor-ring { opacity: 0.5; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 200;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 64px;
+    height: 76px;
+  }
+  .logo-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+  }
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--navy);
+    text-decoration: none;
+    line-height: 1;
+  }
+  .logo-tag {
+    font-size: 0.5rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--chrome);
+    font-weight: 500;
+  }
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 44px;
+    align-items: center;
+  }
+  nav ul a {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.25s;
+    position: relative;
+  }
+  nav ul a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--navy);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+  nav ul a:hover { color: var(--navy); }
+  nav ul a:hover::after { transform: scaleX(1); }
+  .nav-contact {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--navy);
+    padding: 12px 28px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s;
+    cursor: none;
+  }
+  .nav-contact:hover { background: var(--navy-mid); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 76px;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px 80px 64px;
+    position: relative;
+  }
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border-navy) 30%, var(--border-navy) 70%, transparent);
+  }
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.9s ease 0.2s both;
+  }
+  .hero-eyebrow span {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--chrome);
+    font-weight: 500;
+  }
+  .eyebrow-line {
+    width: 48px; height: 1px;
+    background: var(--silver);
+  }
+  .eyebrow-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    line-height: 1.08;
+    color: var(--navy);
+    margin-bottom: 32px;
+    animation: fadeUp 0.9s ease 0.35s both;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    max-width: 420px;
+    margin-bottom: 52px;
+    font-weight: 300;
+    animation: fadeUp 0.9s ease 0.5s both;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.9s ease 0.65s both;
+  }
+  .btn-navy {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--navy);
+    padding: 16px 36px;
+    text-decoration: none;
+    border: none;
+    cursor: none;
+    transition: all 0.3s;
+  }
+  .btn-navy:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(11,22,40,0.15); }
+  .btn-ghost {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--navy);
+    background: transparent;
+    padding: 16px 36px;
+    text-decoration: none;
+    border: 1px solid var(--border-navy);
+    cursor: none;
+    transition: all 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--navy); background: var(--off-white); }
+
+  .hero-badges {
+    display: flex;
+    gap: 32px;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    animation: fadeUp 0.9s ease 0.8s both;
+  }
+  .badge-item { text-align: left; }
+  .badge-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .badge-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--chrome);
+    font-weight: 500;
+  }
+
+  .hero-right {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .hero-right-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 30% 40%, rgba(200,160,12,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 80%, rgba(30,49,88,0.8) 0%, transparent 60%),
+      linear-gradient(145deg, #0b1628 0%, #152240 50%, #0f1e38 100%);
+  }
+  .hero-car-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 22vw;
+    color: rgba(255,255,255,0.025);
+    font-weight: 700;
+    white-space: nowrap;
+    user-select: none;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+  .hero-featured-card {
+    position: relative;
+    z-index: 1;
+    padding: 48px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(10px);
+    animation: fadeUp 1s ease 0.6s both;
+  }
+  .featured-tag {
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .featured-tag::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+  .featured-model {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.9rem;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .featured-sub {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .featured-specs {
+    display: flex;
+    gap: 28px;
+  }
+  .fspec {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .fspec strong {
+    display: block;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.85rem;
+    letter-spacing: 0;
+    font-weight: 400;
+    margin-bottom: 3px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* PARTNER LOGOS */
+  .partners {
+    padding: 48px 64px;
+    border-bottom: 1px solid var(--border);
+    background: var(--off-white);
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    overflow: hidden;
+  }
+  .partners-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--chrome);
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .partners-divider {
+    width: 1px; height: 32px;
+    background: var(--border-navy);
+    flex-shrink: 0;
+  }
+  .partner-logos {
+    display: flex;
+    gap: 52px;
+    align-items: center;
+    flex: 1;
+  }
+  .partner-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--navy);
+    opacity: 0.35;
+    text-transform: uppercase;
+    transition: opacity 0.3s;
+    cursor: none;
+    white-space: nowrap;
+  }
+  .partner-logo:hover { opacity: 0.8; }
+
+  /* SECTION COMMONS */
+  section { padding: 120px 64px; }
+
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .section-eyebrow span {
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--chrome);
+    font-weight: 600;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--silver);
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 4.5vw, 4.2rem);
+    line-height: 1.08;
+    color: var(--navy);
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+
+  /* FLEET */
+  .fleet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+  }
+  .fleet-header p {
+    max-width: 340px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+  }
+
+  .brand-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 52px;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand-tab {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text-light);
+    padding: 14px 24px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    cursor: none;
+    transition: all 0.25s;
+  }
+  .brand-tab.active, .brand-tab:hover {
+    color: var(--navy);
+    border-bottom-color: var(--navy);
+  }
+
+  .fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+  .car-card {
+    background: var(--white);
+    cursor: none;
+    position: relative;
+    transition: box-shadow 0.35s ease;
+    overflow: hidden;
+  }
+  .car-card:hover { box-shadow: 0 20px 60px rgba(11,22,40,0.1); z-index: 2; }
+  .car-card.hero-card {
+    grid-column: span 2;
+  }
+  .car-visual {
+    aspect-ratio: 16/9;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .car-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--car-bg, linear-gradient(135deg, #0f1e38 0%, #0b1628 100%));
+  }
+  .car-emoji-wrap {
+    position: relative;
+    z-index: 1;
+    font-size: 4.5rem;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+    transition: transform 0.5s ease;
+  }
+  .car-card:hover .car-emoji-wrap { transform: scale(1.08) translateY(-4px); }
+  .car-pill {
+    position: absolute;
+    top: 18px; left: 18px;
+    z-index: 2;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 5px 12px;
+  }
+  .pill-gold { background: var(--accent); color: var(--white); }
+  .pill-new { background: var(--white); color: var(--navy); }
+  .pill-limited { background: var(--navy); color: var(--white); }
+
+  .car-info {
+    padding: 28px 30px 32px;
+  }
+  .car-brand {
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--chrome);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .car-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.45rem;
+    color: var(--navy);
+    margin-bottom: 18px;
+    line-height: 1.1;
+  }
+  .car-meta {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .cmeta {
+    font-size: 0.62rem;
+    color: var(--text-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .cmeta strong {
+    display: block;
+    color: var(--text-dark);
+    font-size: 0.78rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .car-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .car-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .car-price small {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    color: var(--chrome);
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+  .car-cta {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--navy);
+    background: none;
+    border: 1px solid var(--border-navy);
+    padding: 9px 20px;
+    cursor: none;
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+  .car-cta:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .view-all-wrap {
+    text-align: center;
+    padding-top: 56px;
+  }
+
+  /* ABOUT / LEGACY */
+  .legacy-section {
+    background: var(--navy);
+    color: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .legacy-left {
+    padding: 100px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .legacy-left .section-eyebrow span { color: rgba(255,255,255,0.35); }
+  .legacy-left .section-eyebrow::before { background: rgba(255,255,255,0.15); }
+  .legacy-left .section-title { color: var(--white); }
+  .legacy-left p {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.55);
+    margin-top: 24px;
+    margin-bottom: 48px;
+    max-width: 440px;
+  }
+  .legacy-right {
+    background: var(--navy-light);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background-color: rgba(255,255,255,0.05);
+  }
+  .legacy-stat {
+    padding: 56px 44px;
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .legacy-stat:hover { background: var(--navy-light); }
+  .legacy-stat-icon { font-size: 1.6rem; margin-bottom: 20px; display: block; }
+  .legacy-stat h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+  .legacy-stat p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.65;
+    margin: 0;
+    max-width: none;
+  }
+
+  /* WORKSHOP */
+  .workshop-section {
+    background: var(--off-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .workshop-visual {
+    background: var(--navy);
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .workshop-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 40% 40%, rgba(200,160,12,0.08) 0%, transparent 60%),
+                linear-gradient(135deg, #0b1628 0%, #1e3158 100%);
+  }
+  .workshop-emoji {
+    font-size: 6rem;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 8px 32px rgba(0,0,0,0.5));
+  }
+  .workshop-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .ws-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 18px 16px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    transition: border-color 0.25s;
+  }
+  .ws-item:hover { border-color: var(--navy); }
+  .ws-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+  .ws-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+
+  /* TESTIMONIALS */
+  .testi-section { background: var(--white); }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    background: var(--border);
+  }
+  .testi-card {
+    background: var(--white);
+    padding: 44px 36px;
+    position: relative;
+  }
+  .testi-card::before {
+    content: '\201C';
+    font-family: 'DM Serif Display', serif;
+    font-size: 5rem;
+    color: var(--off-white);
+    position: absolute;
+    top: 20px; left: 28px;
+    line-height: 1;
+  }
+  .testi-stars {
+    color: var(--accent);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+  .testi-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+    font-style: italic;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+  .testi-author {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--chrome);
+    font-weight: 600;
+  }
+  .testi-author strong {
+    display: block;
+    color: var(--navy);
+    margin-bottom: 3px;
+    font-size: 0.75rem;
+  }
+
+  /* LOCATIONS */
+  .locations-section {
+    background: var(--navy);
+    color: var(--white);
+    padding: 100px 64px;
+  }
+  .locations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 64px;
+    background: rgba(255,255,255,0.04);
+  }
+  .location-card {
+    background: var(--navy-mid);
+    padding: 52px 48px;
+    border: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.3s;
+  }
+  .location-card:hover { background: var(--navy-light); }
+  .loc-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .loc-label::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--accent);
+  }
+  .loc-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  .loc-address {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .loc-contact {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.55);
+  }
+  .loc-contact a { color: var(--silver-light); text-decoration: none; transition: color 0.2s; }
+  .loc-contact a:hover { color: var(--accent); }
+
+  /* CTA STRIP */
+  .cta-strip {
+    background: var(--accent);
+    padding: 60px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .cta-strip h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    line-height: 1.1;
+  }
+  .cta-strip p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.75);
+    margin-top: 8px;
+  }
+  .btn-white {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--navy);
+    background: var(--white);
+    padding: 16px 36px;
+    border: none;
+    cursor: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: var(--white);
+    padding: 72px 64px 40px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 64px;
+  }
+  .footer-brand .logo-name { color: var(--white); font-size: 1.3rem; }
+  .footer-brand .logo-tag { color: rgba(255,255,255,0.25); }
+  .footer-brand p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.75;
+    margin-top: 20px;
+    max-width: 260px;
+  }
+  .footer-col h4 {
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-col ul a {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.25s;
+    letter-spacing: 0.04em;
+  }
+  .footer-col ul a:hover { color: rgba(255,255,255,0.8); }
+  .footer-bottom {
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-bottom p {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(11,22,40,0.85);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(12px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white);
+    width: 90%;
+    max-width: 520px;
+    padding: 56px;
+    position: relative;
+    animation: fadeUp 0.4s ease;
+  }
+  .modal-close {
+    position: absolute;
+    top: 22px; right: 26px;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--chrome);
+    background: none;
+    border: none;
+    cursor: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--navy); }
+  .modal-eye {
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .modal h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--navy);
+    margin-bottom: 32px;
+    line-height: 1.1;
+  }
+  .form-field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+  .form-field label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--chrome);
+    font-weight: 600;
+  }
+  .form-field input, .form-field select, .form-field textarea {
+    border: 1px solid var(--border-navy);
+    background: var(--off-white);
+    color: var(--navy);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.25s;
+    cursor: none;
+    resize: none;
+    width: 100%;
+  }
+  .form-field input:focus, .form-field select:focus { border-color: var(--navy); }
+  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .modal-submit {
+    width: 100%;
+    margin-top: 8px;
+    padding: 16px;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--navy);
+    border: none;
+    cursor: none;
+    transition: background 0.3s;
+  }
+  .modal-submit:hover { background: var(--navy-mid); }
+
+  /* REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 960px) {
+    nav { padding: 0 24px; }
+    nav ul, .nav-contact { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { min-height: 340px; }
+    section { padding: 72px 24px; }
+    .fleet-header { flex-direction: column; gap: 24px; align-items: flex-start; }
+    .fleet-grid { grid-template-columns: 1fr; }
+    .car-card.hero-card { grid-column: span 1; }
+    .legacy-section { grid-template-columns: 1fr; }
+    .legacy-right { grid-template-columns: 1fr 1fr; }
+    .workshop-section { grid-template-columns: 1fr; gap: 40px; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .locations-grid { grid-template-columns: 1fr; }
+    .cta-strip { flex-direction: column; text-align: center; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .hero-left { padding: 60px 24px; }
+    .partners { padding: 32px 24px; flex-wrap: wrap; gap: 20px; }
+    .locations-section { padding: 72px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo-wrap" style="text-decoration:none">
+    <span class="logo-name">SKYMIT</span>
+    <span class="logo-tag">Motors Ltd · Est. 1986</span>
+  </a>
+  <ul>
+    <li><a href="#fleet">Auto Gallery</a></li>
+    <li><a href="#legacy">Our Legacy</a></li>
+    <li><a href="#workshop">Workshop</a></li>
+    <li><a href="#locations">Locations</a></li>
+  </ul>
+  <a href="#" class="nav-contact" onclick="openModal('Schedule a Visit')">Schedule a Visit</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-dot"></div>
+      <div class="eyebrow-line"></div>
+      <span>Authorized Mercedes-Benz · Range Rover Dealer</span>
+    </div>
+    <h1>Exclusivity<br>on Every<br><em>Ride.</em></h1>
+    <p class="hero-desc">Nigeria's most prestigious automotive destination. We serve high-net-worth individuals and corporate organizations with the world's finest vehicles — backed by decades of expertise.</p>
+    <div class="hero-actions">
+      <a href="#fleet" class="btn-navy">View Auto Gallery</a>
+      <a href="#" class="btn-ghost" onclick="openModal('Enquiry')">Make an Enquiry</a>
+    </div>
+    <div class="hero-badges">
+      <div class="badge-item">
+        <div class="badge-num">39+</div>
+        <div class="badge-label">Years in Business</div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-num">₦3B+</div>
+        <div class="badge-label">Total Capital</div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-num">2</div>
+        <div class="badge-label">Premium Showrooms</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="hero-car-text">S</div>
+    <div class="hero-featured-card">
+      <div class="featured-tag">Featured Vehicle</div>
+      <div class="featured-model">Mercedes-Benz GLS 450</div>
+      <div class="featured-sub">AMG Line · 2024 Model Year</div>
+      <div class="featured-specs">
+        <div class="fspec"><strong>3.0L</strong>Engine</div>
+        <div class="fspec"><strong>367 hp</strong>Power</div>
+        <div class="fspec"><strong>Automatic</strong>Gearbox</div>
+        <div class="fspec"><strong>Available</strong>Status</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PARTNERS -->
+<div class="partners reveal">
+  <span class="partners-label">Our Brands</span>
+  <div class="partners-divider"></div>
+  <div class="partner-logos">
+    <span class="partner-logo">Mercedes-Benz</span>
+    <span class="partner-logo">Range Rover</span>
+    <span class="partner-logo">Lexus</span>
+    <span class="partner-logo">Toyota</span>
+    <span class="partner-logo">Mitsubishi</span>
+    <span class="partner-logo">AMG</span>
+  </div>
+</div>
+
+<!-- FLEET -->
+<section id="fleet">
+  <div class="fleet-header reveal">
+    <div>
+      <div class="section-eyebrow"><span>Auto Gallery</span></div>
+      <div class="section-title">Our Current<br><em>Lineup</em></div>
+    </div>
+    <p>Every vehicle in our showroom is sourced directly and backed by full manufacturer warranties. Browse our curated selection below.</p>
+  </div>
+
+  <div class="brand-tabs reveal">
+    <button class="brand-tab active" onclick="filterBrand(this,'all')">All Vehicles</button>
+    <button class="brand-tab" onclick="filterBrand(this,'mercedes')">Mercedes-Benz</button>
+    <button class="brand-tab" onclick="filterBrand(this,'rangerover')">Range Rover</button>
+    <button class="brand-tab" onclick="filterBrand(this,'lexus')">Lexus</button>
+    <button class="brand-tab" onclick="filterBrand(this,'toyota')">Toyota</button>
+  </div>
+
+  <div class="fleet-grid" id="fleetGrid">
+
+    <div class="car-card hero-card reveal" data-brand="mercedes">
+      <div class="car-visual" style="--car-bg: linear-gradient(135deg,#0b1628 0%,#1a2d4a 100%)">
+        <div class="car-emoji-wrap">🏎</div>
+        <span class="car-pill pill-gold">Featured</span>
+      </div>
+      <div class="car-info">
+        <div class="car-brand">Mercedes-Benz · AMG Line</div>
+        <div class="car-name">GLS 450 4MATIC</div>
+        <div class="car-meta">
+          <div class="cmeta"><strong>2024</strong>Model Year</div>
+          <div class="cmeta"><strong>3.0L Turbo</strong>Engine</div>
+          <div class="cmeta"><strong>367 hp</strong>Power</div>
+          <div class="cmeta"><strong>7 Seats</strong>Capacity</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">₦145,000,000 <small>Finance from ₦1.65M/month</small></div>
+          <a href="#" class="car-cta" onclick="openModal('GLS 450 Enquiry')">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card reveal" data-brand="lexus">
+      <div class="car-visual" style="--car-bg: linear-gradient(135deg,#0f1e38 0%,#152240 100%)">
+        <div class="car-emoji-wrap">🚙</div>
+        <span class="car-pill pill-new">New Arrival</span>
+      </div>
+      <div class="car-info">
+        <div class="car-brand">Lexus</div>
+        <div class="car-name">LX 600 / 700h</div>
+        <div class="car-meta">
+          <div class="cmeta"><strong>2024</strong>Year</div>
+          <div class="cmeta"><strong>3.5L V6</strong>Engine</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">₦138,000,000 <small>Finance available</small></div>
+          <a href="#" class="car-cta" onclick="openModal('LX 600 Enquiry')">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card reveal" data-brand="rangerover">
+      <div class="car-visual" style="--car-bg: linear-gradient(135deg,#101e32 0%,#0d1828 100%)">
+        <div class="car-emoji-wrap">🚘</div>
+        <span class="car-pill pill-limited">Limited Stock</span>
+      </div>
+      <div class="car-info">
+        <div class="car-brand">Range Rover</div>
+        <div class="car-name">Sport HSE Dynamic</div>
+        <div class="car-meta">
+          <div class="cmeta"><strong>2024</strong>Year</div>
+          <div class="cmeta"><strong>5.0L V8</strong>Engine</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">₦195,000,000 <small>Finance available</small></div>
+          <a href="#" class="car-cta" onclick="openModal('Range Rover Enquiry')">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card reveal" data-brand="lexus">
+      <div class="car-visual" style="--car-bg: linear-gradient(135deg,#0d1c30 0%,#132035 100%)">
+        <div class="car-emoji-wrap">🚗</div>
+        <span class="car-pill pill-new">In Stock</span>
+      </div>
+      <div class="car-info">
+        <div class="car-brand">Lexus</div>
+        <div class="car-name">TX 350</div>
+        <div class="car-meta">
+          <div class="cmeta"><strong>2024</strong>Year</div>
+          <div class="cmeta"><strong>2.4L Turbo</strong>Engine</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">₦98,000,000 <small>Finance available</small></div>
+          <a href="#" class="car-cta" onclick="openModal('TX 350 Enquiry')">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card reveal" data-brand="mercedes">
+      <div class="car-visual" style="--car-bg: linear-gradient(135deg,#0b1628 0%,#16284a 100%)">
+        <div class="car-emoji-wrap">⭐</div>
+        <span class="car-pill pill-gold">Premium</span>
+      </div>
+      <div class="car-info">
+        <div class="car-brand">Mercedes-Benz</div>
+        <div class="car-name">GLE 450 AMG</div>
+        <div class="car-meta">
+          <div class="cmeta"><strong>2023</strong>Year</div>
+          <div class="cmeta"><strong>3.0L Turbo</strong>Engine</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">₦118,000,000 <small>Finance available</small></div>
+          <a href="#" class="car-cta" onclick="openModal('GLE 450 Enquiry')">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card reveal" data-brand="toyota">
+      <div class="car-visual" style="--car-bg: linear-gradient(135deg,#0e1c2e 0%,#14243c 100%)">
+        <div class="car-emoji-wrap">🚐</div>
+        <span class="car-pill pill-new">In Stock</span>
+      </div>
+      <div class="car-info">
+        <div class="car-brand">Toyota</div>
+        <div class="car-name">Land Cruiser 300</div>
+        <div class="car-meta">
+          <div class="cmeta"><strong>2024</strong>Year</div>
+          <div class="cmeta"><strong>3.3L V6</strong>Engine</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">₦88,000,000 <small>Finance available</small></div>
+          <a href="#" class="car-cta" onclick="openModal('Land Cruiser Enquiry')">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="view-all-wrap reveal">
+    <a href="#" class="btn-ghost" onclick="openModal('Full Inventory Request')">View Full Inventory</a>
+  </div>
+</section>
+
+<!-- LEGACY -->
+<div class="legacy-section" id="legacy">
+  <div class="legacy-left reveal">
+    <div class="section-eyebrow"><span>Our Legacy</span></div>
+    <div class="section-title">Driven by<br>Excellence,<br><em>Since 1986.</em></div>
+    <p>Skymit Motors was established with a single purpose — to serve Nigeria's corporate and high-net-worth clientele with vehicles befitting their status. From two cars on Opebi Road, we have grown to a ₦3 billion enterprise trusted by thousands.</p>
+    <a href="#" class="btn-white" style="background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.15);display:inline-block;text-decoration:none;" onclick="openModal('Learn More')">Read Our Story</a>
+  </div>
+  <div class="legacy-right">
+    <div class="legacy-stat reveal">
+      <span class="legacy-stat-icon">🏆</span>
+      <h3>Authorized Dealer</h3>
+      <p>Official Mercedes-Benz dealer under Weststar Associates Limited — Daimler AG's representative in Nigeria.</p>
+    </div>
+    <div class="legacy-stat reveal">
+      <span class="legacy-stat-icon">🔑</span>
+      <h3>Latest Models</h3>
+      <p>We stock new vehicles within weeks of global release — not months. Always current, always first.</p>
+    </div>
+    <div class="legacy-stat reveal">
+      <span class="legacy-stat-icon">🔄</span>
+      <h3>Trade-In Offers</h3>
+      <p>Attractive trade-in valuations handled transparently — upgrade your vehicle without the hassle.</p>
+    </div>
+    <div class="legacy-stat reveal">
+      <span class="legacy-stat-icon">🛡</span>
+      <h3>After-Sales Care</h3>
+      <p>Factory-trained technicians. Genuine parts. Comprehensive service plans. We stay with you after the sale.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WORKSHOP -->
+<section class="workshop-section" id="workshop">
+  <div class="workshop-visual reveal">
+    <div class="workshop-emoji">🔧</div>
+  </div>
+  <div class="reveal">
+    <div class="section-eyebrow"><span>Workshop</span></div>
+    <div class="section-title">Comprehensive<br>Auto Care</div>
+    <p style="font-size:0.92rem;line-height:1.8;color:var(--text-mid);margin-top:18px;max-width:400px">Our state-of-the-art workshop facility is staffed by manufacturer-trained technicians using genuine OEM parts. Your vehicle deserves nothing less.</p>
+    <div class="workshop-grid">
+      <div class="ws-item"><span class="ws-icon">⚙️</span><div class="ws-label">Routine Servicing & Maintenance</div></div>
+      <div class="ws-item"><span class="ws-icon">🔍</span><div class="ws-label">Diagnostic & Engine Repair</div></div>
+      <div class="ws-item"><span class="ws-icon">❄️</span><div class="ws-label">Air Conditioning Service</div></div>
+      <div class="ws-item"><span class="ws-icon">🛞</span><div class="ws-label">Tyres, Brakes & Suspension</div></div>
+      <div class="ws-item"><span class="ws-icon">🎨</span><div class="ws-label">Body Work & Panel Beating</div></div>
+      <div class="ws-item"><span class="ws-icon">📋</span><div class="ws-label">Pre-Purchase Inspection</div></div>
+    </div>
+    <div style="margin-top:36px">
+      <a href="#" class="btn-navy" onclick="openModal('Book a Service')">Book a Service</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="reveal">
+    <div class="section-eyebrow"><span>Client Testimonials</span></div>
+    <div class="section-title">What Our<br>Clients <em>Say</em></div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Skymit made the experience of acquiring my GLS 450 seamless. Their knowledge of the product and the level of after-sales care is unmatched anywhere in Lagos."</p>
+      <div class="testi-author"><strong>Chukwuemeka Eze</strong>Victoria Island · Mercedes GLS 450</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"I've purchased three vehicles from Skymit over the years. The team genuinely understands the needs of corporate buyers, and they never disappoint."</p>
+      <div class="testi-author"><strong>Mrs. Folake Adeyemi</strong>Ikoyi · Range Rover Sport</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The workshop team is first-rate. I won't take my Lexus anywhere else. Honest assessments, genuine parts, and they get it done on time."</p>
+      <div class="testi-author"><strong>Alhaji Musa Danladi</strong>Ikeja · Lexus LX 600</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<div class="locations-section" id="locations">
+  <div class="reveal">
+    <div class="section-eyebrow" style="--silver:rgba(255,255,255,0.15)">
+      <span style="color:rgba(255,255,255,0.35)">Find Us</span>
+    </div>
+    <div class="section-title" style="color:white">Two Premium<br><em>Showrooms</em></div>
+  </div>
+  <div class="locations-grid reveal">
+    <div class="location-card">
+      <div class="loc-label">Mainland</div>
+      <div class="loc-name">Ikeja Showroom</div>
+      <div class="loc-address">32, Mobolaji Bank Anthony Way<br>Ikeja, Lagos, Nigeria</div>
+      <div class="loc-contact">
+        <a href="tel:+2347042783726">07042783726</a> &nbsp;·&nbsp;
+        <a href="tel:+2348023035818">08023035818</a><br><br>
+        <a href="mailto:admin@skymitmotorsltd.com">admin@skymitmotorsltd.com</a>
+      </div>
+    </div>
+    <div class="location-card">
+      <div class="loc-label">Island</div>
+      <div class="loc-name">Victoria Island Showroom</div>
+      <div class="loc-address">15, Adeola Odeku Street<br>Victoria Island, Lagos, Nigeria</div>
+      <div class="loc-contact">
+        <a href="tel:+2347042783726">07042783726</a> &nbsp;·&nbsp;
+        <a href="tel:+2348023035818">08023035818</a><br><br>
+        <a href="mailto:admin@skymitmotorsltd.com">admin@skymitmotorsltd.com</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip reveal">
+  <div>
+    <h2>Ready to Upgrade Your Ride?</h2>
+    <p>Visit either of our showrooms or enquire online. Our specialists are ready.</p>
+  </div>
+  <a href="#" class="btn-white" onclick="openModal('Enquiry')">Make an Enquiry</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-wrap">
+        <span class="logo-name">SKYMIT</span>
+        <span class="logo-tag">Motors Ltd · Est. 1986</span>
+      </div>
+      <p>Nigeria's premier destination for luxury and premium automobiles. Authorized Mercedes-Benz dealer under Weststar Associates Limited.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Gallery</h4>
+      <ul>
+        <li><a href="#">Mercedes-Benz</a></li>
+        <li><a href="#">Range Rover</a></li>
+        <li><a href="#">Lexus</a></li>
+        <li><a href="#">Toyota</a></li>
+        <li><a href="#">Mitsubishi</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Auto Gallery</a></li>
+        <li><a href="#">Workshop</a></li>
+        <li><a href="#">Trade-In</a></li>
+        <li><a href="#">After-Sales</a></li>
+        <li><a href="#">Finance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">Our Legacy</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Skymit Motors Ltd. All Rights Reserved.</p>
+    <p>Authorized Mercedes-Benz Dealer · Ikeja & Victoria Island, Lagos</p>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="bgClose(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕ Close</button>
+    <div class="modal-eye" id="modalEye">Skymit Motors</div>
+    <h3 id="modalTitle">Make an Enquiry</h3>
+    <div id="modalBody">
+      <div class="form-row-2">
+        <div class="form-field"><label>First Name</label><input type="text" placeholder="Emeka"></div>
+        <div class="form-field"><label>Last Name</label><input type="text" placeholder="Eze"></div>
+      </div>
+      <div class="form-field"><label>Phone / WhatsApp</label><input type="tel" placeholder="+234 800 000 0000"></div>
+      <div class="form-field"><label>Email Address</label><input type="email" placeholder="your@email.com"></div>
+      <div class="form-field">
+        <label>Preferred Showroom</label>
+        <select>
+          <option>Ikeja — Mobolaji Bank Anthony Way</option>
+          <option>Victoria Island — Adeola Odeku Street</option>
+        </select>
+      </div>
+      <div class="form-field"><label>Message</label><textarea rows="3" placeholder="Tell us what you're looking for..."></textarea></div>
+      <button class="modal-submit" onclick="submitForm()">Submit Enquiry →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Cursor
+  const cur = document.getElementById('cursor'), ring = document.getElementById('ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; });
+  (function tick(){ cur.style.cssText=`left:${mx}px;top:${my}px`; rx+=(mx-rx)*0.1; ry+=(my-ry)*0.1; ring.style.cssText=`left:${rx}px;top:${ry}px`; requestAnimationFrame(tick); })();
+
+  // Reveal
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, {threshold:0.1});
+  els.forEach(e=>obs.observe(e));
+
+  // Filter
+  function filterBrand(btn, brand){
+    document.querySelectorAll('.brand-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.car-card').forEach(c=>{
+      c.style.display = (brand==='all' || c.dataset.brand===brand) ? '' : 'none';
+    });
+  }
+
+  // Modal
+  function openModal(title){
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalEye').textContent = 'Skymit Motors';
+    document.getElementById('modalOverlay').classList.add('open');
+    return false;
+  }
+  function closeModal(){ document.getElementById('modalOverlay').classList.remove('open'); }
+  function bgClose(e){ if(e.target===document.getElementById('modalOverlay')) closeModal(); }
+  function submitForm(){
+    document.querySelector('.modal').innerHTML=`<div style="text-align:center;padding:24px 0"><div style="font-size:3rem;margin-bottom:16px">✓</div><div style="font-family:'DM Serif Display',serif;font-size:2rem;color:var(--navy);margin-bottom:12px">Enquiry Received</div><p style="font-size:0.9rem;color:var(--text-mid);line-height:1.75;margin-bottom:32px">Our team will contact you within 2 business hours. Thank you for choosing Skymit Motors.</p><button onclick="closeModal()" class="btn-navy" style="cursor:none;">Close</button></div>`;
+  }
+  document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+</script>
+</body>
+</html>
